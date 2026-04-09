@@ -1,11 +1,19 @@
 // main.js
 function randomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.random() * (max - min) + min;
 }
-let rotation = 0;
+
+let divs = document.querySelectorAll(".grid-container div");
+
 document.addEventListener("click", function () {
-    let min = 10;
-    let max = 40;
-    rotation += randomNumber (1, 200);
-    document.body.style.transform = `rotate(${rotation}deg)`;
+    divs.forEach(div => {
+        let x = randomNumber(-500, 500);
+        let y = randomNumber(-500, 500);
+
+        let rotate = randomNumber(-720, 720);
+
+        // apply styles
+        div.style.transition = "transform 1.5s ease-out";
+        div.style.transform = `translate(${x}px, ${y}px) rotate(${rotate}deg)`;
+    });
 });
